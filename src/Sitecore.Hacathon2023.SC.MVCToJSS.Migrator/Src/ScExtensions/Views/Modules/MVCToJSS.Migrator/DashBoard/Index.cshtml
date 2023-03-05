@@ -1,0 +1,51 @@
+﻿@using Sitecore.Hacathon2023.SC.MVCToJSS.Migrator.Helper;
+
+@{
+    Layout = "~/Views/Modules/MVCToJSS.Migrator/DashBoard/_Layout.cshtml";
+}
+
+<div class="mt-4 p-5 bg-dark text-white rounded">
+    <h1>Migrate .NET-MVC to Headless </h1>
+    <hr class="my-4" />
+    <p>Migrate your sitecore item, template and rendering from traditional .NET-MVC to Headless compatible formats.</p>
+
+    <p>Additionally get the prototype for all components inside your page.</p>
+</div>
+
+@if (!ProgressUpdate.IsCurrentlyProgressed)
+{
+    <!--Form-->
+    <div class="m-5 container mx-auto d-block">
+        <form action="/MVCToJSS/DashBoard/Migrate" method="post" class="mx-auto d-block">
+
+            <div class="m-2 form-group">
+                <label for="MVCWebSiteRoot">MVC WebSite Root</label>
+                <input type="text" class="form-control" name="MVCWebSiteRoot" placeholder="MVC WebSite Root" required value="/sitecore/content/SampleHackathon/Copy of Copy of Home"/>
+            </div>           
+
+            <div class="m-2 form-group">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="CodeGeneration">
+                    <label class="form-check-label" for="CodeGeneration">Psudo Code generation</label>
+                </div>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Front end selection</option>
+                    <option value="React">React</option>
+                    <option value="Angular">Angular</option>
+                    <option value="Vue">Vue</option>
+                </select>
+            </div>
+
+            <button type="submit" class="m-2 btn btn-primary">Submit</button>
+        </form>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        Migration process is currently running, Please wait for the current operation to be complete!
+    </div>
+}
+
+
+
